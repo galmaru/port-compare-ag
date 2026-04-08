@@ -18,7 +18,9 @@ export async function GET(request: NextRequest) {
     // 기본적으로 yahoo finance는 다양한 국가를 반환할 수 있으므로, 주식이나 ETF만 반환하도록 합니다.
     const filtered = results.quotes.filter(
       (quote: any) =>
-        quote.quoteType === 'EQUITY' || quote.quoteType === 'ETF'
+        quote.quoteType === 'EQUITY' || 
+        quote.quoteType === 'ETF' || 
+        quote.quoteType === 'MUTUALFUND'
     ).map((quote: any) => ({
       ticker: quote.symbol,
       name: quote.shortname || quote.longname || quote.symbol,
